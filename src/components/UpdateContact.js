@@ -1,10 +1,12 @@
 import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useLocation } from 'react-router-dom'
 
-function AddContact(props) {
-    const [name, setName] = useState('')
-    const [email, setEmail] = useState('')
+function UpdateContact(props) {
     let navigate = useNavigate();
+    let location = useLocation();
+
+    const [name, setName] = useState(location.state.contact.name)
+    const [email, setEmail] = useState(location.state.contact.email)
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -13,10 +15,11 @@ function AddContact(props) {
             return
         }
         let contact = {
+            id: location.state.contact.id,
             name: name,
             email: email
         }
-        props.addContactHandler(contact);
+        props.UpdateContactHandler(contact);
         setName('');
         setEmail('');
         navigate('/')
@@ -34,10 +37,10 @@ function AddContact(props) {
                     <label>Email:</label>
                     <input type="text" name='email' placeholder='Email' value={email} onChange={(event) => { return setEmail(event.target.value) }} />
                 </div>
-                <button type='submit' className='ui button blue'>Add</button>
+                <button type='submit' className='ui button blue'>Update</button>
             </form>
         </div>
     )
 }
 
-export default AddContact
+export default UpdateContact

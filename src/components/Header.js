@@ -2,9 +2,9 @@ import React from 'react'
 
 function Header() {
     return (
-        <div>
-            <div>
-                <h2>Contact Manager</h2>
+        <div className='ui fixed menu'>
+            <div className='ui container center'>
+                <h2 className='center'>Contact Manager</h2>
             </div>
         </div>
     )
